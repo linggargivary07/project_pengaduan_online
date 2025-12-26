@@ -1,0 +1,730 @@
+/* --- Root Variables & Global Reset --- */
+:root {
+  --color-primary: #1a237e; /* Biru tua sidebar */
+  --color-secondary: #e8eaf6; /* Biru muda item aktif */
+  --color-background: #f5f7fb; /* Latar belakang utama */
+  --color-white: #ffffff;
+  --color-text-dark: #333333;
+  --color-text-muted: #757575;
+  --color-border: #e0e0e0;
+
+  --color-success: #4caf50; /* Hijau untuk resolved/naik */
+  --color-warning: #ff9800; /* Oranye untuk in progress */
+  --color-danger: #f44336; /* Merah untuk urgent/turun */
+
+  --card-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  --border-radius: 12px;
+  --sidebar-width: 260px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text-dark);
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style-type: none;
+}
+
+/* --- Layout Utama --- */
+.dashboard-container {
+  display: grid;
+  grid-template-columns: var(--sidebar-width) 1fr; /* Sidebar tetap, konten fleksibel */
+  min-height: 100vh;
+}
+
+/* --- Sidebar Styling --- */
+.sidebar {
+  background-color: var(--color-white);
+  padding: 20px;
+  border-right: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  z-index: 100; /* Agar di atas konten saat di mobile */
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+  color: var(--color-primary);
+}
+
+.logo-icon {
+  font-size: 2.5rem;
+  margin-right: 10px;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-text span {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.logo-text small {
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+}
+
+/* Tombol tutup dan buka hanya muncul di mobile */
+.close-btn,
+.menu-btn {
+  display: none;
+  cursor: pointer;
+}
+
+.sidebar-menu li {
+  margin-bottom: 10px;
+}
+
+.sidebar-menu a {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  color: var(--color-text-muted);
+  border-radius: var(--border-radius);
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.sidebar-menu a span {
+  margin-right: 15px;
+  font-size: 1.4rem;
+}
+
+.sidebar-menu a.active,
+.sidebar-menu a:hover {
+  background-color: var(--color-secondary);
+  color: var(--color-primary);
+}
+
+/* --- Main Content Styling --- */
+.main-content {
+  padding: 30px;
+  overflow-y: auto; /* Konten utama bisa di-scroll */
+}
+
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 30px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.menu-btn {
+  font-size: 2rem;
+  margin-right: 15px;
+  color: var(--color-text-dark);
+}
+
+.main-header h1 {
+  font-size: 1.8rem;
+  margin-bottom: 5px;
+}
+
+.welcome-text {
+  color: var(--color-text-muted);
+}
+
+.date-display {
+  color: var(--color-text-muted);
+  font-weight: 500;
+  text-align: right;
+}
+
+/* --- Card Styles --- */
+.card {
+  background-color: var(--color-white);
+  border-radius: var(--border-radius);
+  padding: 25px;
+  box-shadow: var(--card-shadow);
+}
+
+.stats-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 kolom kartu */
+  gap: 25px;
+  margin-bottom: 30px;
+}
+
+.stat-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.stat-card h3 {
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  margin-bottom: 10px;
+}
+
+.stat-number {
+  font-size: 2.2rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.stat-trend {
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+.stat-trend span {
+  font-size: 1.1rem;
+  margin-right: 5px;
+}
+
+.stat-trend.up span {
+  color: var(--color-success);
+}
+.stat-trend.down span {
+  color: var(--color-warning);
+}
+
+.card-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-icon span {
+  font-size: 2rem;
+}
+
+.icon-blue {
+  background-color: var(--color-secondary);
+  color: var(--color-primary);
+}
+.icon-orange {
+  background-color: #fff3e0;
+  color: var(--color-warning);
+}
+.icon-green {
+  background-color: #e8f5e9;
+  color: var(--color-success);
+}
+
+/* --- Table Styles --- */
+.recent-complaints {
+  padding: 25px;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.card-header h2 {
+  font-size: 1.3rem;
+}
+
+.view-all-btn {
+  color: var(--color-primary);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto; /* Scroll horizontal jika tabel terlalu lebar */
+}
+
+.complaints-table {
+  width: 100%;
+  border-collapse: collapse;
+  white-space: nowrap; /* Mencegah teks membungkus di layar kecil */
+}
+
+.complaints-table th,
+.complaints-table td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.complaints-table th {
+  font-weight: 600;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+}
+
+.complaints-table td {
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+/* Status Badges */
+.status {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.badge-progress {
+  background-color: #fff3e0;
+  color: var(--color-warning);
+}
+.badge-resolved {
+  background-color: #e8f5e9;
+  color: var(--color-success);
+}
+.badge-urgent {
+  background-color: #ffebee;
+  color: var(--color-danger);
+}
+
+/* --- RESPONSIVE MEDIA QUERIES --- */
+
+/* Tablet & Mobile (Max Width 992px) */
+@media screen and (max-width: 992px) {
+  .dashboard-container {
+    grid-template-columns: 1fr; /* Ubah ke layout 1 kolom */
+  }
+
+  .sidebar {
+    position: fixed;
+    left: -100%; /* Sembunyikan sidebar di kiri layar */
+    top: 0;
+    height: 100vh;
+    width: var(--sidebar-width);
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Kelas aktif ditambahkan via JS untuk memunculkan sidebar */
+  .sidebar.active {
+    left: 0;
+  }
+
+  .menu-btn,
+  .close-btn {
+    display: block; /* Tampilkan tombol hamburger & tutup */
+  }
+
+  .close-btn {
+    margin-left: auto;
+  }
+
+  .stats-cards {
+    grid-template-columns: repeat(2, 1fr); /* Kartu jadi 2 kolom di tablet */
+  }
+}
+
+/* Mobile (Max Width 600px) */
+@media screen and (max-width: 600px) {
+  .main-header {
+    flex-direction: column;
+  }
+
+  .header-right {
+    margin-top: 15px;
+    width: 100%;
+    text-align: left;
+  }
+
+  .date-display {
+    text-align: left;
+  }
+
+  .stats-cards {
+    grid-template-columns: 1fr; /* Kartu jadi 1 kolom penuh di mobile */
+  }
+
+  .main-content {
+    padding: 20px;
+  }
+}
+
+/* bagian complaints ************************************************************ */
+/* --- Tambahan untuk Filter Section --- */
+.filter-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 20px;
+  margin-bottom: 25px;
+  flex-wrap: wrap; /* Agar turun ke bawah di mobile */
+}
+
+.filter-group {
+  display: flex;
+  gap: 20px;
+}
+
+.filter-item label,
+.search-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: var(--color-text-muted);
+}
+
+.filter-item select,
+.search-input input {
+  padding: 10px 15px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background-color: var(--color-white);
+  font-size: 0.9rem;
+  color: var(--color-text-dark);
+  outline: none;
+  min-width: 180px;
+}
+
+.search-group {
+  flex-grow: 1;
+  max-width: 400px;
+}
+
+.search-input input {
+  width: 100%;
+}
+
+/* --- Detail Tabel Pengaduan --- */
+.complaint-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.complaint-info .title {
+  font-weight: 700;
+  color: var(--color-text-dark);
+  margin-bottom: 4px;
+}
+
+.complaint-info .description {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 300px;
+}
+
+.badge-pending {
+  background-color: #fff9c4;
+  color: #fbc02d;
+}
+.badge-closed {
+  background-color: #eeeeee;
+  color: #616161;
+}
+
+.view-details {
+  color: #3f51b5;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.view-details:hover {
+  text-decoration: underline;
+}
+
+/* --- Pagination --- */
+.pagination-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 25px;
+  padding-top: 20px;
+  border-top: 1px solid var(--color-border);
+}
+
+.showing-text {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+.pagination {
+  display: flex;
+  gap: 5px;
+}
+
+.page-btn {
+  padding: 8px 15px;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-white);
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: 0.2s;
+}
+
+.page-btn.active {
+  background-color: #3f51b5;
+  color: white;
+  border-color: #3f51b5;
+}
+
+.page-btn:hover:not(.active) {
+  background-color: var(--color-secondary);
+}
+
+/* --- Responsive Tambahan --- */
+@media screen and (max-width: 768px) {
+  .filter-section {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-group {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .search-group {
+    max-width: 100%;
+  }
+
+  .pagination-container {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+}
+
+/* bagian complaint detail ********************************* */
+/* --- Detail Page Specific Styles --- */
+.detail-header {
+  margin-bottom: 25px;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.back-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: white;
+  color: var(--color-text-dark);
+  box-shadow: var(--card-shadow);
+  transition: 0.3s;
+}
+
+.back-btn:hover {
+  background: var(--color-primary);
+  color: white;
+}
+
+.header-titles h1 {
+  font-size: 1.5rem;
+  margin-bottom: 2px;
+}
+
+/* Grid Layout */
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 350px; /* Kolom utama dan sidebar aksi */
+  gap: 25px;
+  align-items: start;
+}
+
+.complaint-title-main {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.submission-date {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 25px;
+}
+
+/* Student Information Box */
+.info-box {
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 25px;
+}
+
+.info-box h3,
+.complaint-content h3,
+.attachments-section h3,
+.action-card h3 {
+  font-size: 1rem;
+  margin-bottom: 15px;
+  color: var(--color-text-dark);
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.info-item {
+  font-size: 0.9rem;
+}
+
+.info-item span {
+  color: var(--color-text-muted);
+  margin-right: 5px;
+}
+
+/* Content & Attachments */
+.complaint-content p {
+  line-height: 1.6;
+  color: #444;
+  margin-bottom: 15px;
+}
+
+.attachments-section {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid var(--color-border);
+}
+
+.attachment-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.attachment-item {
+  display: flex;
+  align-items: center;
+  background: #f8f9fa;
+  padding: 12px 15px;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+}
+
+.file-icon {
+  margin-right: 15px;
+  font-size: 24px;
+}
+.doc-blue {
+  color: #2196f3;
+}
+.doc-red {
+  color: #f44336;
+}
+
+.file-details {
+  display: flex;
+  flex-direction: column;
+}
+.file-name {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.file-size {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+/* Form Elements */
+.action-card {
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+.form-group label {
+  display: block;
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+  color: var(--color-text-muted);
+}
+
+.form-control {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: 0.3s;
+}
+
+.btn-full {
+  width: 100%;
+}
+.btn-primary {
+  background: var(--color-primary);
+  color: white;
+}
+.btn-primary:hover {
+  opacity: 0.9;
+}
+.btn-success {
+  background: #28a745;
+  color: white;
+}
+
+/* Responsive */
+@media screen and (max-width: 1100px) {
+  .detail-grid {
+    grid-template-columns: 1fr;
+  }
+  .detail-side {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+  .detail-side {
+    grid-template-columns: 1fr;
+  }
+}

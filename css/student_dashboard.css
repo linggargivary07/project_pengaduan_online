@@ -1,0 +1,434 @@
+/* --- Header Styles --- */
+.main-content {
+  padding: 32px;
+}
+
+.student-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.student-header h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.welcome-text {
+  color: var(--color-text-muted);
+  margin-top: 4px;
+}
+
+/* --- Modern Premium Button --- */
+.btn-new-complaint {
+  /* Warna & Background (Gradient Halus) */
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  color: #ffffff;
+
+  /* Ukuran & Spasi */
+  padding: 12px 24px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+
+  /* Border & Radius */
+  border: none;
+  border-radius: 10px; /* Sudut lebih lembut */
+
+  /* Layout Ikon & Teks */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  /* Efek Bayangan (Soft Shadow) */
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+
+  /* Transisi */
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Efek Hover (Saat Kursor di Atas Tombol) */
+.btn-new-complaint:hover {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.35);
+  transform: translateY(-2px); /* Melayang sedikit */
+}
+
+/* Efek Active (Saat Tombol Diklik) */
+.btn-new-complaint:active {
+  transform: translateY(0); /* Kembali ke posisi semula */
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
+  opacity: 0.9;
+}
+
+/* Fokus (Aksesibilitas Keyboard) */
+.btn-new-complaint:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.4);
+}
+
+/* Style Ikon di Dalam Tombol */
+.btn-new-complaint .material-icons-outlined {
+  font-size: 20px;
+  transition: transform 0.3s ease;
+}
+
+.btn-new-complaint:hover .material-icons-outlined {
+  transform: rotate(90deg); /* Ikon "+" berputar sedikit saat hover */
+}
+
+.btn-new-complaint:hover {
+  background-color: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+/* --- Student Card & Table --- */
+.student-card {
+  background: var(--color-white);
+  border-radius: var(--border-radius-lg);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  padding: 24px;
+}
+
+.card-header-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.filter-select {
+  padding: 8px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-sm);
+  font-size: 0.9rem;
+  color: var(--color-text-main);
+  outline: none;
+}
+
+/* Table Styling */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.student-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.student-table th {
+  text-align: left;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.student-table td {
+  padding: 16px;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 0.95rem;
+}
+
+.complaint-id {
+  color: var(--color-text-muted);
+}
+.complaint-title {
+  font-weight: 600;
+  color: var(--color-text-main);
+}
+
+/* --- Status Badges (Student Style) --- */
+.status-student {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.pending {
+  background-color: #fff7ed;
+  color: #c2410c;
+}
+.pending .status-dot {
+  background-color: #f97316;
+}
+
+.in-progress {
+  background-color: #eff6ff;
+  color: #1d4ed8;
+}
+.in-progress .status-dot {
+  background-color: #3b82f6;
+}
+
+.resolved {
+  background-color: #f0fdf4;
+  color: #15803d;
+}
+.resolved .status-dot {
+  background-color: #22c55e;
+}
+
+/* --- Footer Actions --- */
+.card-footer-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 24px;
+}
+
+.view-all-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-primary-student);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.view-all-link:hover {
+  text-decoration: underline;
+}
+
+/* --- Mobile Fixes --- */
+@media (max-width: 640px) {
+  .main-content {
+    padding: 16px;
+  }
+  .student-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .btn-new-complaint {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* untuk add complaint *********************************************************** */
+/* --- Form Layout & Typography --- */
+.form-title-section {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 25px;
+  align-items: flex-start;
+}
+
+.info-icon-blue {
+  color: #2563eb;
+  font-size: 24px;
+}
+
+.form-title-section h2 {
+  font-size: 1.4rem;
+  margin-bottom: 5px;
+}
+
+.form-title-section p {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+.form-section {
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.form-section:last-of-type {
+  border-bottom: none;
+}
+
+.form-section h3 {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  color: var(--color-text-main);
+}
+
+/* Form Controls */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: 0.3s;
+}
+
+.form-control:focus {
+  border-color: #2563eb;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.form-control-disabled {
+  background-color: #f1f5f9;
+  color: #64748b;
+  cursor: not-allowed;
+  border: 1px solid var(--color-border);
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.input-note {
+  display: block;
+  margin-top: 5px;
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+}
+
+/* Checkbox Style */
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.checkbox-item input {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+/* Footer & Actions */
+.form-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.required-note {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.form-actions {
+  display: flex;
+  gap: 15px;
+}
+
+.btn-ghost {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-ghost:hover {
+  background-color: #f8fafc;
+}
+
+/* Help Info Box */
+.help-info-box {
+  margin-top: 30px;
+  background-color: #eff6ff; /* Light blue */
+  border: 1px solid #bfdbfe;
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  gap: 15px;
+}
+
+.help-icon {
+  color: #2563eb;
+  font-size: 24px;
+}
+
+.help-text h4 {
+  color: #1e40af;
+  margin-bottom: 8px;
+}
+
+.help-text p {
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+  color: #1e3a8a;
+}
+
+.help-text ul {
+  list-style: none;
+}
+
+.help-text li {
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+  color: #1e3a8a;
+}
+
+.system-footer {
+  text-align: center;
+  margin-top: 40px;
+  padding: 20px 0;
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+}
+
+/* --- Responsive Form --- */
+@media (max-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+  .form-footer {
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+  }
+  .form-actions {
+    width: 100%;
+  }
+  .form-actions button {
+    flex: 1;
+  }
+}
