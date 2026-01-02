@@ -1,0 +1,105 @@
+/* response *********************************************************************/
+/* --- Administrative Responses Section --- */
+.admin-responses-section {
+  margin-top: 40px;
+  margin-bottom: 50px;
+}
+
+.section-main-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 20px;
+}
+
+.response-display-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* Header Style */
+.response-display-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 25px;
+}
+
+.admin-profile {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.admin-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #f1f5f9;
+}
+
+.admin-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0;
+}
+
+.admin-role {
+  font-size: 0.9rem;
+  color: #64748b;
+  margin: 0;
+}
+
+.response-timestamp {
+  font-size: 0.9rem;
+  color: #94a3b8;
+}
+
+/* Body Content Style */
+.response-display-body {
+  color: #334155;
+  line-height: 1.7;
+  font-size: 1rem;
+}
+
+.response-display-body p {
+  margin-bottom: 15px;
+}
+
+.response-list {
+  margin-bottom: 20px;
+  padding-left: 20px;
+}
+
+.response-list li {
+  margin-bottom: 8px;
+  position: relative;
+  list-style-type: disc;
+  color: #475569;
+}
+
+.response-signature {
+  margin-top: 25px;
+  padding-top: 15px;
+}
+
+/* Responsivitas Mobile */
+@media (max-width: 640px) {
+  .response-display-header {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .response-timestamp {
+    font-size: 0.8rem;
+  }
+
+  .response-display-card {
+    padding: 20px;
+  }
+}

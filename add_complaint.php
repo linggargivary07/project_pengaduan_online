@@ -1,3 +1,27 @@
+<?php
+require 'functions.php';
+
+
+
+// ini_set('display_errors', 1);
+// error_reporting(E_ALL);
+
+
+// if( isset($_POST["submit"]) ) {
+//     // cek apakah data berhasil ditambahkan atau tidak
+//     // var_dump($_POST);
+//     // var_dump($_FILES);
+
+//     if( tambah($_POST) > 0 ) {
+//         echo "data berhasil ditambahkan!";
+//     } else {
+//         echo "data gagal ditambahkan!";
+//     }   
+// }
+
+// echo "hello world";
+?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -6,6 +30,7 @@
     <title>Submit a Complaint - UniPortal</title>
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/student_dashboard.css">
+    <link rel="stylesheet" href="css/upload_area.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
 </head>
@@ -54,7 +79,7 @@
             </div>
 
             <div class="student-card form-container">
-                <form id="complaintForm">
+                <form id="complaintForm" method="POST" action="" enctype="multipart/form-data">
                     <div class="form-section">
                         <h3>Student Information</h3>
                         <div class="form-grid">
@@ -100,6 +125,19 @@
                             <textarea class="form-control" rows="6" placeholder="Please provide a detailed description of your complaint..." required id="descInput"></textarea>
                             <small class="input-note">Minimum 50 characters required</small>
                         </div>
+                        <!-- upload gambar dengan area -->
+                        <div class="form-group image-upload-area">
+                            <label for="roomImage">Room Image</label>
+                            <div class="drop-area" id="dropArea">
+                                <i class="fa-solid fa-cloud-upload-alt upload-icon"></i>
+                                <p>Drag and drop your image here <br> or click to browse from your computer</p>
+
+                                <!-- input gambar -->
+                                <input type="file" id="roomImage" name="image_url" accept="image/*" hidden required>
+                                <button type="button" class="btn-secondary" id="chooseFileBtn">Choose File</button>
+                            </div>
+                            <span id="file-name" class="file-info-text">No file chosen.</span>
+                        </div>
                         <div class="form-group">
                             <label>Desired Outcome</label>
                             <textarea class="form-control" rows="3" placeholder="What would you like to see happen as a result of this complaint? (Optional)"></textarea>
@@ -124,7 +162,7 @@
                         <span class="required-note">* Required fields</span>
                         <div class="form-actions">
                             <button type="button" class="btn-ghost">Save as Draft</button>
-                            <button type="submit" class="btn-new-complaint">
+                            <button type="submit" name="submit" class="btn-new-complaint">
                                 <span class="material-icons-outlined">send</span> Submit Complaint
                             </button>
                         </div>
@@ -151,5 +189,6 @@
         </main>
     </div>
     <script src="js/add_complaint.js"></script>
+    <script src="js/upload_area.js"></script>
 </body>
 </html>

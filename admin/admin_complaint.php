@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detail Pengaduan - UniComplaint</title>
     <link rel="stylesheet" href="css/admin_dashboard.css">
+    <link rel="stylesheet" href="css/response_section.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
 </head>
@@ -113,6 +114,45 @@
                         </button>
                     </div>
                 </aside>
+            </div>
+            <div class="detail-grid">
+                <section class="admin-responses-section">
+                    <h2 class="section-main-title">Administrative Responses</h2>
+                    
+                    <div class="card response-display-card">
+                        <div class="response-display-header">
+                            <div class="admin-profile">
+                                <img src="https://i.pravatar.cc/150?u=elena" alt="Dr. Elena Martinez" class="admin-avatar">
+                                <div class="admin-info">
+                                    <h4 class="admin-name">Dr. Elena Martinez</h4>
+                                    <p class="admin-role">Academic Affairs Officer</p>
+                                </div>
+                            </div>
+                            <div class="response-timestamp">
+                                Mar 18, 2024 - 3:45 PM
+                            </div>
+                        </div>
+
+                        <div class="response-display-body">
+                            <p>Dear Sarah,</p>
+                            <p>Thank you for bringing this matter to our attention. We take all academic concerns seriously and are committed to ensuring fair and transparent grading practices across all departments.</p>
+                            <p>I have initiated a formal review of your case and have requested the following materials from Professor Anderson:</p>
+                            
+                            <ul class="response-list">
+                                <li>Detailed grading rubric for the midterm examination</li>
+                                <li>Your exam responses with specific feedback annotations</li>
+                                <li>Grade distribution for the entire class</li>
+                            </ul>
+
+                            <p>We expect to complete our review within 5-7 business days. I will keep you updated on our progress.</p>
+                            
+                            <div class="response-signature">
+                                <p>Best regards,</p>
+                                <p><strong>Dr. Elena Martinez</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </div>
         </main>
     </div>
