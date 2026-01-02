@@ -1,10 +1,10 @@
 <?php
-require 'functions.php';
+require 'admin/functions.php';
 if (!isset($_SESSION['user_id'])) {
     header("Location: index.php");
     exit;
 }
-// ?>
+?>
 
 <!DOCTYPE html>
 <html lang="id">

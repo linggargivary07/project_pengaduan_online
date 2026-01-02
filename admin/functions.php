@@ -170,7 +170,7 @@ function login($data) {
     $_SESSION["email"] = $email;
 
     $result = mysqli_query($conn, "SELECT * FROM users WHERE email = '$email'");
-    // $_SESSION['user_id'] = mysqli_fetch_assoc($result)['user_id'];
+    $_SESSION['user_id'] = mysqli_fetch_assoc($result)['user_id'];
 
     // cek email
     if(mysqli_num_rows($result) === 1) {
