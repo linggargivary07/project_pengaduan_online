@@ -52,4 +52,54 @@ document.addEventListener("DOMContentLoaded", () => {
       fileNameDisplay.textContent = "No file chosen.";
     }
   });
+
+  // --- Fungsionalitas Form Submission ---
+  // addRoomForm.addEventListener("submit", (event) => {
+  //   event.preventDefault();
+
+  //   // Di sini Anda akan mengumpulkan data form (termasuk file)
+  //   const formData = new FormData(addRoomForm);
+
+  //   // Contoh mengirim data menggunakan Fetch API ke script PHP:
+  //   /*
+  //       fetch('add_room_mysqli.php', {
+  //           method: 'POST',
+  //           body: formData
+  //       })
+  //       .then(response => response.json())
+  //       .then(data => {
+  //           if (data.status === 'success') {
+  //               alert(`SUCCESS: ${data.message}`);
+  //               addRoomForm.reset(); // Kosongkan form setelah sukses
+  //           } else {
+  //               alert(`ERROR: ${data.message}`);
+  //           }
+  //       })
+  //       .catch(error => {
+  //           console.error('Error:', error);
+  //           alert('Terjadi kesalahan koneksi.');
+  //       });
+  //       */
+
+  //   // Untuk demo sementara:
+  //   // alert(
+  //   //   `Formulir Tambah Room disubmit.\n Nama: ${formData.get(
+  //   //     "name"
+  //   //   )}\n Harga: ${formData.get(
+  //   //     "price_per_night"
+  //   //   )}\n (Data akan dikirim ke backend PHP)`
+  //   // );
+  // });
+
+  // Fungsionalitas Tombol Cancel
+  // document.querySelector(".btn-cancel").addEventListener("click", () => {
+  //   if (
+  //     confirm(
+  //       "Apakah Anda yakin ingin membatalkan? Semua perubahan akan hilang."
+  //     )
+  //   ) {
+  //     // Arahkan kembali ke halaman Room Management
+  //     window.location.href = "admin-room-management.html";
+  //   }
+  // });
 });

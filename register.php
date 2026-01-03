@@ -49,6 +49,14 @@ if (isset($_POST['register'])) {
                     </div>
 
                     <div class="form-group">
+                        <label for="jurusan">Jurusan</label>
+                        <div class="input-icon-container">
+                            <input type="text" id="jurusan" name="jurusan" placeholder="Enter your jurusan" required>
+                        </div>
+                    </div>
+                    
+
+                    <div class="form-group">
                         <label for="email">Email Address</label>
                         <div class="input-icon-container">
                             <input type="email" id="email" name="email" placeholder="Enter your email" required>
@@ -63,6 +71,7 @@ if (isset($_POST['register'])) {
                             <i class="material-icons input-icon-right toggle-password" onclick="togglePasswordVisibility()">visibility_off</i>
                         </div>
                     </div>
+
                     
                     
 

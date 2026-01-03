@@ -1,25 +1,26 @@
 <?php
-require 'functions.php';
+require 'admin/functions.php';
+
+session_start();
+$user_id = $_SESSION['user_id'];
+
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 
 
+if( isset($_POST["submit"]) ) {
+    // cek apakah data berhasil ditambahkan atau tidak
+    // var_dump($_POST);
+    // var_dump($_FILES);
 
-// ini_set('display_errors', 1);
-// error_reporting(E_ALL);
+    if( tambah($_POST) > 0 ) {
+        header("Location: student_dashboard.php");
+        exit;
+    } else {
+        echo "data gagal ditambahkan!";
+    }   
+}
 
-
-// if( isset($_POST["submit"]) ) {
-//     // cek apakah data berhasil ditambahkan atau tidak
-//     // var_dump($_POST);
-//     // var_dump($_FILES);
-
-//     if( tambah($_POST) > 0 ) {
-//         echo "data berhasil ditambahkan!";
-//     } else {
-//         echo "data gagal ditambahkan!";
-//     }   
-// }
-
-// echo "hello world";
 ?>
 
 <!DOCTYPE html>
@@ -58,7 +59,7 @@ require 'functions.php';
                     <span class="material-icons-outlined menu-btn" id="open-sidebar">menu</span>
                     <div>
                         <h1>Dashboard</h1>
-                        <p class="welcome-text">Welcome back, Alex</p>
+                        <p class="welcome-text">Welcome back, <?= $_SESSION['name'] ?></p>
                     </div>
                 </div>
                 <div class="header-right">
@@ -79,17 +80,18 @@ require 'functions.php';
             </div>
 
             <div class="student-card form-container">
+                <!-- form &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& -->
                 <form id="complaintForm" method="POST" action="" enctype="multipart/form-data">
                     <div class="form-section">
                         <h3>Student Information</h3>
                         <div class="form-grid">
                             <div class="form-group">
                                 <label>Student ID</label>
-                                <input type="text" value="STU-2024-001234" disabled class="form-control-disabled">
+                                <input type="text" value="<?= $_SESSION['user_id'] ?>" disabled class="form-control-disabled">
                             </div>
                             <div class="form-group">
-                                <label>Department</label>
-                                <input type="text" value="Computer Science" disabled class="form-control-disabled">
+                                <label>Jurusan</label>
+                                <input type="text" value="<?= $_SESSION['jurusan'] ?>" disabled class="form-control-disabled">
                             </div>
                         </div>
                     </div>
@@ -97,33 +99,33 @@ require 'functions.php';
                     <div class="form-section">
                         <h3>Complaint Details</h3>
                         <div class="form-group">
-                            <label>Complaint Title *</label>
-                            <input type="text" placeholder="Enter a brief, descriptive title for your complaint" required class="form-control">
+                            <label for="complaint_title">Complaint Title *</label>
+                            <input type="text" name="complaint_title" id="complaint_title" placeholder="Enter a brief, descriptive title for your complaint" required class="form-control">
                         </div>
                         <div class="form-grid">
                             <div class="form-group">
                                 <label>Category *</label>
-                                <select class="form-control" required>
+                                <select name="category" class="form-control" required>
                                     <option value="" disabled selected>Select a category</option>
-                                    <option>Academics</option>
-                                    <option>Facilities</option>
-                                    <option>IT Services</option>
-                                    <option>Dining</option>
+                                    <option value="academics">Academics</option>
+                                    <option value="facilities">Facilities</option>
+                                    <option value="it_services">IT Services</option>
+                                    <option value="dining">Dining</option>
                                 </select>
                             </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label>Priority Level</label>
                                 <select class="form-control">
                                     <option>Low - General inquiry or minor issue</option>
                                     <option>Medium - Standard issue</option>
                                     <option>High - Urgent matter</option>
                                 </select>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="form-group">
-                            <label>Detailed Description *</label>
-                            <textarea class="form-control" rows="6" placeholder="Please provide a detailed description of your complaint..." required id="descInput"></textarea>
-                            <small class="input-note">Minimum 50 characters required</small>
+                            <label for="complaint_description">Detailed Description *</label>
+                            <textarea class="form-control" name="complaint_description" rows="6" placeholder="Please provide a detailed description of your complaint..." required id="descInput"></textarea>
+                            <small class="input-note">Minimum 1 characters required</small>
                         </div>
                         <!-- upload gambar dengan area -->
                         <div class="form-group image-upload-area">
@@ -133,20 +135,22 @@ require 'functions.php';
                                 <p>Drag and drop your image here <br> or click to browse from your computer</p>
 
                                 <!-- input gambar -->
-                                <input type="file" id="roomImage" name="image_url" accept="image/*" hidden required>
+                                <input type="file" id="roomImage" name="attachment_url" accept="image/*" hidden required>
                                 <button type="button" class="btn-secondary" id="chooseFileBtn">Choose File</button>
                             </div>
                             <span id="file-name" class="file-info-text">No file chosen.</span>
                         </div>
+
                         <div class="form-group">
-                            <label>Desired Outcome</label>
-                            <textarea class="form-control" rows="3" placeholder="What would you like to see happen as a result of this complaint? (Optional)"></textarea>
+                            <label for="desired_outcome">Desired Outcome</label>
+                            <textarea class="form-control" name="desired_outcome" rows="3" placeholder="What would you like to see happen as a result of this complaint? (Optional)"></textarea>
                         </div>
                     </div>
 
                     <div class="form-section">
                         <h3>Contact Preferences</h3>
-                        <div class="checkbox-group">
+                        <p>0812xxxxxxxx</p>
+                        <!-- <div class="checkbox-group">
                             <label class="checkbox-item">
                                 <input type="checkbox" checked>
                                 <span>Email me updates about this complaint</span>
@@ -155,13 +159,13 @@ require 'functions.php';
                                 <input type="checkbox">
                                 <span>I am available for a follow-up phone call</span>
                             </label>
-                        </div>
+                        </div> -->
                     </div>
 
                     <div class="form-footer">
                         <span class="required-note">* Required fields</span>
                         <div class="form-actions">
-                            <button type="button" class="btn-ghost">Save as Draft</button>
+                            <!-- <button type="button" class="btn-ghost">Save as Draft</button> -->
                             <button type="submit" name="submit" class="btn-new-complaint">
                                 <span class="material-icons-outlined">send</span> Submit Complaint
                             </button>
@@ -188,7 +192,7 @@ require 'functions.php';
             </footer>
         </main>
     </div>
-    <script src="js/add_complaint.js"></script>
     <script src="js/upload_area.js"></script>
+    <script src="js/add_complaint.js"></script>
 </body>
 </html>

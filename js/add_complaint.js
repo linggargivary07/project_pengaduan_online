@@ -4,10 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (complaintForm) {
     complaintForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-
       // Validasi karakter minimum (50 karakter)
-      if (descInput.value.length < 50) {
+      if (descInput.value.length < 1) {
         alert(
           "Please provide a more detailed description (minimum 50 characters)."
         );

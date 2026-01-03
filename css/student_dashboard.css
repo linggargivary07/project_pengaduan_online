@@ -11,8 +11,27 @@
 }
 
 .student-header h1 {
-  font-size: 1.8rem;
-  font-weight: 700;
+  font-size: 2rem;
+  letter-spacing: -0.02em;
+  color: var(--color-text-main);
+}
+
+.btn-new-complaint {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary) 0%,
+    var(--color-primary-dark) 100%
+  );
+  padding: 12px 28px;
+  border-radius: 12px;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
 }
 
 .welcome-text {
@@ -54,9 +73,8 @@
 
 /* Efek Hover (Saat Kursor di Atas Tombol) */
 .btn-new-complaint:hover {
-  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.35);
-  transform: translateY(-2px); /* Melayang sedikit */
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 20px 25px -5px rgba(37, 99, 235, 0.4);
 }
 
 /* Efek Active (Saat Tombol Diklik) */
@@ -119,24 +137,32 @@
 }
 
 .student-table {
-  width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0 12px;
+}
+
+.student-table tbody tr {
+  background: #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+  border-radius: 12px;
+  transition: 0.3s ease;
+}
+
+.student-table tbody tr:hover {
+  transform: scale(1.01);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
+}
+
+.student-table td:first-child {
+  border-radius: 12px 0 0 12px;
+}
+.student-table td:last-child {
+  border-radius: 0 12px 12px 0;
 }
 
 .student-table th {
-  text-align: left;
-  padding: 12px 16px;
-  border-bottom: 1px solid var(--color-border);
-  color: var(--color-text-muted);
-  font-size: 0.85rem;
-  font-weight: 600;
-  text-transform: uppercase;
-}
-
-.student-table td {
-  padding: 16px;
-  border-bottom: 1px solid var(--color-border);
-  font-size: 0.95rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
 }
 
 .complaint-id {
@@ -152,40 +178,54 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 0.85rem;
-  font-weight: 500;
+  padding: 6px 16px;
+  border-radius: 100px; /* Full Pill */
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: capitalize;
 }
 
-.status-dot {
-  width: 6px;
-  height: 6px;
+.dot {
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
+  display: inline-block;
 }
 
-.pending {
-  background-color: #fff7ed;
-  color: #c2410c;
+/* Status: Menunggu */
+.badge-pending-v2 {
+  background-color: var(--status-pending-bg);
+  color: var(--status-pending-text);
 }
-.pending .status-dot {
-  background-color: #f97316;
-}
-
-.in-progress {
-  background-color: #eff6ff;
-  color: #1d4ed8;
-}
-.in-progress .status-dot {
-  background-color: #3b82f6;
+.badge-pending-v2 .dot {
+  background-color: var(--status-pending-dot);
 }
 
-.resolved {
-  background-color: #f0fdf4;
-  color: #15803d;
+/* Status: Diproses */
+.badge-progress-v2 {
+  background-color: var(--status-process-bg);
+  color: var(--status-process-text);
 }
-.resolved .status-dot {
-  background-color: #22c55e;
+.badge-progress-v2 .dot {
+  background-color: var(--status-process-dot);
+}
+
+/* Status: Selesai */
+.badge-resolved-v2 {
+  background-color: var(--status-success-bg);
+  color: var(--status-success-text);
+}
+.badge-resolved-v2 .dot {
+  background-color: var(--status-success-dot);
+}
+
+/* Status: Ditolak */
+.badge-rejected-v2 {
+  background-color: var(--status-rejected-bg);
+  color: var(--status-rejected-text);
+}
+.badge-rejected-v2 .dot {
+  background-color: var(--status-rejected-dot);
 }
 
 /* --- Footer Actions --- */

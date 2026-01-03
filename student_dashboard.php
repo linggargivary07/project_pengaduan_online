@@ -1,9 +1,13 @@
 <?php
+session_start();
 require 'admin/functions.php';
 if (!isset($_SESSION['user_id'])) {
     header("Location: index.php");
     exit;
 }
+
+$user_id = $_SESSION['user_id'];
+$complaints = query("SELECT * FROM complaints WHERE user_id = $user_id");
 ?>
 
 <!DOCTYPE html>
@@ -12,8 +16,8 @@ if (!isset($_SESSION['user_id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Dashboard - UniPortal</title>
-    <link rel="stylesheet" href="css/student_dashboard.css">
     <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/student_dashboard.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
 </head>
@@ -57,7 +61,7 @@ if (!isset($_SESSION['user_id'])) {
                     <span class="material-icons-outlined menu-btn" id="open-sidebar">menu</span>
                     <div>
                         <h1>Dashboard</h1>
-                        <p class="welcome-text">Welcome back, Alex</p>
+                        <p class="welcome-text">Welcome back, <?= $_SESSION['name'] ?></p>
                     </div>
                 </div>
                 <div class="header-right">
@@ -101,7 +105,7 @@ if (!isset($_SESSION['user_id'])) {
                                 <td class="bold-title">Library AC not working</td>
                                 <td>Facilities</td>
                                 <td>Dec 10, 2024</td>
-                                <td><span class="status-student badge-pending-v2"><span class="dot"></span> Pending</span></td>
+                                <td><span class="status-student badge-pending-v2"><span class="dot"></span>Pending </span></td>
                                 <td><a href="#" class="view-link">View</a></td>
                             </tr>
                             <tr>
