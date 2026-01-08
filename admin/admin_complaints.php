@@ -1,6 +1,30 @@
 <?php 
 require 'functions.php';
 $complaints = query("SELECT * FROM complaints order by create_at desc");
+
+$query = "SELECT * FROM complaints WHERE 1";
+if (!empty($_GET['status'])) {
+    $status = mysqli_real_escape_string($conn, $_GET['status']);
+    $query .= " AND status = '$status'";
+}
+
+if (!empty($_GET['category'])) {
+    $category = mysqli_real_escape_string($conn, $_GET['category']);
+    $query .= " AND category = '$category'";
+}
+
+if (!empty($_GET['search'])) {
+    $search = mysqli_real_escape_string($conn, $_GET['search']);
+    $query .= " AND (
+        complaint_title LIKE '%$search%' OR
+        complaint_description LIKE '%$search%'
+    )";
+}
+
+$query .= " ORDER BY create_at DESC";
+
+$complaints = query($query);
+
 ?>
 
 <!DOCTYPE html>
@@ -46,9 +70,9 @@ $complaints = query("SELECT * FROM complaints order by create_at desc");
                     </a>
                 </li>
                 <li>
-                    <a href="#">
-                        <span class="material-icons-outlined">settings</span>
-                        <span>Settings</span>
+                    <a href="../logout.php">
+                        <span class="material-icons-outlined">logout</span>
+                        <span>Logout</span>
                     </a>
                 </li>
             </ul>
@@ -73,32 +97,39 @@ $complaints = query("SELECT * FROM complaints order by create_at desc");
             </header>
 
             <section class="filter-section">
-                <div class="filter-group">
-                    <div class="filter-item">
-                        <label>Filter by Status</label>
-                        <select>
-                            <option>All Complaints</option>
-                            <option value="pending">Pending</option>
-                            <option value="progress">In Progress</option>
-                            <option value="resolve">Resolved</option>
-                        </select>
+                <form method="GET" class="filter-section">
+                    <div class="filter-group">
+                        <div class="filter-item">
+                            <label>Filter by Status</label>
+                            <select name="status">
+                                <option value="">All Complaints</option>
+                                <option value="pending">Pending</option>
+                                <option value="progress">In Progress</option>
+                                <option value="resolved">Resolved</option>
+                            </select>
+                        </div>
+
+                        <div class="filter-item">
+                            <label>Filter by Category</label>
+                            <select name="category">
+                                <option value="">All Categories</option>
+                                <option value="itservices">IT Services</option>
+                                <option value="facilities">Facilities</option>
+                                <option value="academics">Academics</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="filter-item">
-                        <label>Filter by Category</label>
-                        <select>
-                            <option>All Categories</option>
-                            <option>Technical</option>
-                            <option>Facilities</option>
-                            <option>Academic</option>
-                        </select>
+
+                    <div class="search-group">
+                        <label>Search</label>
+                        <div class="search-input">
+                            <input type="text" name="search" placeholder="Search complaints...">
+                        </div>
                     </div>
-                </div>
-                <div class="search-group">
-                    <label>Search</label>
-                    <div class="search-input">
-                        <input type="text" placeholder="Search complaints...">
-                    </div>
-                </div>
+
+                    <button type="submit" style="display:none;"></button>
+                </form>
+
             </section>
 
             <section class="complaints-list-card card">
@@ -153,7 +184,7 @@ $complaints = query("SELECT * FROM complaints order by create_at desc");
                     </table>
                 </div>
 
-                <div class="pagination-container">
+                <!-- <div class="pagination-container">
                     <p class="showing-text">Showing 1 to 5 of 23 complaints</p>
                     <div class="pagination">
                         <button class="page-btn">Previous</button>
@@ -162,7 +193,7 @@ $complaints = query("SELECT * FROM complaints order by create_at desc");
                         <button class="page-btn">3</button>
                         <button class="page-btn">Next</button>
                     </div>
-                </div>
+                </div> -->
             </section>
         </main>
     </div>

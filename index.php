@@ -23,11 +23,11 @@ if(isset($_POST["login"])) {
         <div class="login-card">
             
             <div class="header-icon">
-                <i class="material-icons">hotel</i>
+                <i class="material-icons">C</i>
             </div>
 
             <h1 class="title">Sign In</h1>
-            <p class="subtitle">Welcome back to your booking account</p>
+            <p class="subtitle">Welcome back to your account</p>
 
             <!-- login form -->
             <form id="loginForm" method="POST" action="">
@@ -47,7 +47,7 @@ if(isset($_POST["login"])) {
                     </div>
                 </div>
 
-                <a href="#" class="forgot-password">Forgot Password?</a>
+                <!-- <a href="#" class="forgot-password">Forgot Password?</a> -->
 
                 <button type="submit" name="login" class="sign-in-button">Sign In</button>
             </form>
@@ -66,6 +66,6 @@ if(isset($_POST["login"])) {
         </div>
     </div>
 
-    <!-- <script src="script/index.js"></script> -->
+    <script src="js/index.js"></script>
 </body>
 </html>

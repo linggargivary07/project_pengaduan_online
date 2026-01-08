@@ -43,8 +43,8 @@ $responses = query("
                 </div>
             </div>
             <ul class="sidebar-menu">
-                <li><a href="dashboard.php"><span class="material-icons-outlined">dashboard</span><span>Dashboard</span></a></li>
-                <li><a href="#" class="active"><span class="material-icons-outlined">assignment</span><span>My Complaints</span></a></li>
+                <li><a href="student_dashboard.php"><span class="material-icons-outlined">dashboard</span><span>Dashboard</span></a></li>
+                <li><a href="my_complaint.php" class="active"><span class="material-icons-outlined">assignment</span><span>My Complaints</span></a></li>
                 <li>
                     <a href="user_profile.php" class="">
                         <span class="material-icons-outlined">person</span>
@@ -98,7 +98,7 @@ $responses = query("
                     <div class="attachments-grid">
                         <h3>Attachments</h3>
                         <div class="attachment-item-v2">
-                            <img src="img/attachment/<?= $complaint["attachment_url"] ?>" alt="">
+                            <img src="img/attachment/<?= $complaint["attachment_url"] ?>" alt="" max-width="350px">
                         </div>
                     </div>
                 </section>

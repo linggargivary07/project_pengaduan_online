@@ -31,7 +31,12 @@ $users = query("SELECT * FROM users ORDER BY name ASC");
                 <li><a href="admin_dashboard.php"><span class="material-icons-outlined">dashboard</span><span>Dashboard</span></a></li>
                 <li><a href="admin_complaints.php"><span class="material-icons-outlined">report_problem</span><span>Complaints</span></a></li>
                 <li><a href="admin_users.php" class="active"><span class="material-icons-outlined">people</span><span>Users</span></a></li>
-                <li><a href="#"><span class="material-icons-outlined">settings</span><span>Settings</span></a></li>
+                <li>
+                    <a href="../logout.php">
+                        <span class="material-icons-outlined">logout</span>
+                        <span>Logout</span>
+                    </a>
+                </li>
             </ul>
         </aside>
 

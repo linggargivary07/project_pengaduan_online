@@ -58,9 +58,9 @@ foreach ($complaints as $complaint) {
                     </a>
                 </li>
                 <li>
-                    <a href="#">
-                        <span class="material-icons-outlined">settings</span>
-                        <span>Settings</span>
+                    <a href="../logout.php">
+                        <span class="material-icons-outlined">logout</span>
+                        <span>Logout</span>
                     </a>
                 </li>
             </ul>

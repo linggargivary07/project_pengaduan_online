@@ -113,7 +113,7 @@ if (isset($_POST['mark_progress'])) {
                         <div class="attachments-section">
                             <h3>Attachments</h3>
                             <div class="attachment-list">
-                                <img src="<?= $complaint["attachment_url"] ?>" alt="">
+                                <img src="../img/attachment/<?= $complaint["attachment_url"] ?>" alt="" width="100%">
                                 <!-- <div class="attachment-item">
                                     <span class="material-icons-outlined file-icon doc-blue">description</span>
                                     <div class="file-details">

@@ -30,7 +30,7 @@ if (isset($_POST['register'])) {
         <div class="register-card">
             
             <div class="header-icon">
-                <i class="material-icons">hotel</i>
+                <i class="material-icons">C</i>
             </div>
 
             <h1 class="title">Register</h1>
