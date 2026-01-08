@@ -109,8 +109,7 @@ if( isset($_POST["submit"]) ) {
                                     <option value="" disabled selected>Select a category</option>
                                     <option value="academics">Academics</option>
                                     <option value="facilities">Facilities</option>
-                                    <option value="it_services">IT Services</option>
-                                    <option value="dining">Dining</option>
+                                    <option value="itservices">IT Services</option>
                                 </select>
                             </div>
                             <!-- <div class="form-group">

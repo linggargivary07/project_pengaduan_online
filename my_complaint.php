@@ -7,7 +7,7 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 $user_id = $_SESSION['user_id'];
-$complaints = query("SELECT * FROM complaints");
+$complaints = query("SELECT * FROM complaints where user_id=$user_id");
 ?>
 
 <!DOCTYPE html>
@@ -35,13 +35,13 @@ $complaints = query("SELECT * FROM complaints");
             
             <ul class="sidebar-menu">
                 <li>
-                    <a href="#" class="active">
+                    <a href="student_dashboard.php" class="">
                         <span class="material-icons-outlined">dashboard</span>
                         <span>Dashboard</span>
                     </a>
                 </li>
                 <li>
-                    <a href="my_complaint.php">
+                    <a href="my_complaint.php" class="active">
                         <span class="material-icons-outlined">assignment</span>
                         <span>My Complaints</span>
                     </a>

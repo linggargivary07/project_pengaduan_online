@@ -695,6 +695,7 @@ ul {
 
 .btn-full {
   width: 100%;
+  margin-bottom: 20px;
 }
 .btn-primary {
   background: var(--color-primary);
@@ -706,6 +707,14 @@ ul {
 .btn-success {
   background: #28a745;
   color: white;
+}
+.btn-progress {
+  background: #2196f3;
+  color: white;
+}
+
+.action-links a {
+  color: red;
 }
 
 /* Responsive */

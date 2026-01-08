@@ -1,0 +1,130 @@
+/* --- Detail Page Layout --- */
+.detail-container-v2 {
+  max-width: 900px;
+  margin: 0 auto;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.detail-header-nav {
+  margin-bottom: 24px;
+}
+
+.btn-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.btn-back:hover {
+  color: var(--color-primary);
+}
+
+/* Detail Card Styling */
+.detail-card-main {
+  padding: 40px !important;
+  margin-bottom: 30px;
+}
+
+.detail-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.complaint-detail-title {
+  font-size: 1.8rem;
+  color: var(--color-text-main);
+  margin-bottom: 12px;
+}
+
+.meta-info {
+  display: flex;
+  gap: 20px;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.divider {
+  border: 0;
+  border-top: 1px solid var(--color-border);
+  margin: 30px 0;
+}
+
+.detail-body-section h3,
+.attachments-grid h3 {
+  font-size: 1rem;
+  color: var(--color-text-main);
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
+.description-text {
+  line-height: 1.8;
+  color: #475569;
+  margin-bottom: 24px;
+}
+
+/* Attachment Styles */
+.attachment-item-v2 {
+  display: flex;
+  align-items: center;
+  background: #f8fafc;
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: 1px solid var(--color-border);
+  max-width: 350px;
+}
+
+/* .file-icon {
+  color: var(--color-primary);
+  margin-right: 12px;
+}
+
+.file-info {
+  flex: 1;
+}
+
+.file-name {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.file-size {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+.btn-download {
+  color: var(--color-text-muted);
+  transition: 0.2s;
+}
+
+.btn-download:hover {
+  color: var(--color-primary);
+} */
+
+/* Responsive Fixes */
+@media (max-width: 768px) {
+  .detail-card-header {
+    flex-direction: column;
+  }
+  .detail-card-main {
+    padding: 24px !important;
+  }
+  .meta-info {
+    flex-direction: column;
+    gap: 8px;
+  }
+}

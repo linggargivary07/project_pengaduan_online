@@ -163,50 +163,98 @@ function tambah($data) {
     return mysqli_affected_rows($conn);
 }
 
-
-
-function update($data) {
+// function untuk admin memberikan response
+function adminResponse($data) {
     global $conn;
 
-    $room_name = $data['room_name'];
-    $description = htmlspecialchars($data['description']);
-    $price_per_night = htmlspecialchars($data['price_per_night']);
-    $max_guest = htmlspecialchars($data['max_guest']);
-    $bed_type = htmlspecialchars($data['bed_type']);
-    $status = htmlspecialchars($data['status']);
-    $room_type = htmlspecialchars($data['room_type']);
-    
-    
-    // upload gambar
-    $image_url = upload();
-    if( !$image_url ) {
-        return false;
-    }
+    $complaint_id = htmlspecialchars($data['complaint_id']);
+    $response_text = htmlspecialchars($data['response_text']);
+    $user_id = $data['user_id'];
 
-    $query = "UPDATE room SET
-        room_id = $data[room_id],
-        room_name = '$room_name',
-        description = '$description',
-        price_per_night = '$price_per_night',
-        max_guest = '$max_guest',
-        bed_type = '$bed_type',
-        image_url = '$image_url',
-        status = '$status',
-        room_type = '$room_type'
-        WHERE room_id = $data[room_id]
+    $query = "INSERT INTO responses 
+        (response_id, complaint_id, user_id, response_text)
+        VALUES 
+        (NULL, '$complaint_id', '$user_id', '$response_text')
     ";
 
     mysqli_query($conn, $query) or die(mysqli_error($conn));
 
-
     return mysqli_affected_rows($conn);
 }
+
+
+
+// function update($data) {
+//     global $conn;
+
+//     $room_name = $data['room_name'];
+//     $description = htmlspecialchars($data['description']);
+//     $price_per_night = htmlspecialchars($data['price_per_night']);
+//     $max_guest = htmlspecialchars($data['max_guest']);
+//     $bed_type = htmlspecialchars($data['bed_type']);
+//     $status = htmlspecialchars($data['status']);
+//     $room_type = htmlspecialchars($data['room_type']);
+    
+    
+//     // upload gambar
+//     $image_url = upload();
+//     if( !$image_url ) {
+//         return false;
+//     }
+
+//     $query = "UPDATE room SET
+//         room_id = $data[room_id],
+//         room_name = '$room_name',
+//         description = '$description',
+//         price_per_night = '$price_per_night',
+//         max_guest = '$max_guest',
+//         bed_type = '$bed_type',
+//         image_url = '$image_url',
+//         status = '$status',
+//         room_type = '$room_type'
+//         WHERE room_id = $data[room_id]
+//     ";
+
+//     mysqli_query($conn, $query) or die(mysqli_error($conn));
+
+
+//     return mysqli_affected_rows($conn);
+// }
 
 function hapus($id) {
     global $conn;
-    mysqli_query($conn, "DELETE FROM room WHERE room_id = $id") or die(mysqli_error($conn));
+    mysqli_query($conn, "DELETE FROM users WHERE user_id = $id") or die(mysqli_error($conn));
     return mysqli_affected_rows($conn);
 }
+
+function markResolved($complaint_id) {
+    global $conn;
+
+    $complaint_id = (int)$complaint_id;
+
+    $query = "UPDATE complaints 
+              SET status = 'resolved' 
+              WHERE complaint_id = $complaint_id";
+
+    mysqli_query($conn, $query);
+
+    return mysqli_affected_rows($conn);
+}
+
+function markProgress($complaint_id) {
+    global $conn;
+
+    $complaint_id = (int)$complaint_id;
+
+    $query = "UPDATE complaints 
+              SET status = 'progress' 
+              WHERE complaint_id = $complaint_id";
+
+    mysqli_query($conn, $query);
+
+    return mysqli_affected_rows($conn);
+}
+
 
 
 

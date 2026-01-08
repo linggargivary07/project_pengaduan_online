@@ -1,3 +1,8 @@
+<?php 
+require 'functions.php';
+$complaints = query("SELECT * FROM complaints order by create_at desc");
+?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -29,13 +34,13 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="active">
+                    <a href="admin_complaints.php" class="active">
                         <span class="material-icons-outlined">report_problem</span>
                         <span>Complaints</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="manage_user.php">
                         <span class="material-icons-outlined">people</span>
                         <span>Users</span>
                     </a>
@@ -55,11 +60,15 @@
                     <span class="material-icons-outlined menu-btn" id="open-sidebar">menu</span>
                     <div>
                         <h1>Dashboard Overview</h1>
-                        <p class="welcome-text">Welcome back, John. Here's what's happening at the university.</p>
+                        <p class="welcome-text">Welcome back, admin. Here's what's happening at the university.</p>
                     </div>
                 </div>
                 <div class="header-right">
-                    <span class="date-display">Today, December 13, 2024</span>
+                    <span class="date-display">
+                        <?php date_default_timezone_set("Asia/Jakarta");
+                            echo "Today, " . date("F d, Y");
+                        ?>
+                    </span>
                 </div>
             </header>
 
@@ -69,9 +78,9 @@
                         <label>Filter by Status</label>
                         <select>
                             <option>All Complaints</option>
-                            <option>Pending</option>
-                            <option>In Progress</option>
-                            <option>Resolved</option>
+                            <option value="pending">Pending</option>
+                            <option value="progress">In Progress</option>
+                            <option value="resolve">Resolved</option>
                         </select>
                     </div>
                     <div class="filter-item">
@@ -106,20 +115,28 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <?php foreach( $complaints as $complaint ) : ?>
                             <tr>
                                 <td>
                                     <div class="complaint-info">
-                                        <span class="title">Library Computer Issues</span>
-                                        <span class="description">Computers in the main library are running slowly...</span>
+                                        <span class="title"><?= $complaint["complaint_title"] ?></span>
+                                        <span class="description"><?= $complaint["complaint_description"] ?></span>
                                     </div>
                                 </td>
-                                <td>Technical</td>
-                                <td>Sarah Johnson</td>
-                                <td>March 15, 2024</td>
-                                <td><span class="status badge-pending">Pending</span></td>
-                                <td><a href="#" class="view-details">View Details</a></td>
+                                <td><?= $complaint["category"] ?></td>
+                                <td>
+                                    <?php
+                                    $user_id = $complaint['user_id'];
+                                    $user = query("SELECT name FROM users WHERE user_id = $user_id")[0];
+                                    echo $user['name'];
+                                    ?>
+                                </td>
+                                <td><?= $complaint["create_at"] ?></td>
+                                <td><span class="status badge-<?= $complaint["status"] ?>"><?= $complaint["status"] ?></span></td>
+                                <td><a href="admin_complaint.php?complaint_id=<?= $complaint["complaint_id"] ?>" class="view-details">View Details</a></td>
                             </tr>
-                            <tr>
+                            <?php endforeach; ?>
+                            <!-- <tr>
                                 <td>
                                     <div class="complaint-info">
                                         <span class="title">Cafeteria Food Quality</span>
@@ -131,7 +148,7 @@
                                 <td>March 14, 2024</td>
                                 <td><span class="status badge-progress">In Progress</span></td>
                                 <td><a href="#" class="view-details">View Details</a></td>
-                            </tr>
+                            </tr> -->
                             </tbody>
                     </table>
                 </div>

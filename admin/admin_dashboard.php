@@ -1,3 +1,21 @@
+<?php
+require 'functions.php';
+$complaints = query("SELECT * FROM complaints order by create_at desc");
+
+// menghitung total complaints
+$total_complaints = count($complaints);
+// menghitung complaints yang sedang diproses
+$in_progress = 0;
+$resolved = 0;
+foreach ($complaints as $complaint) {
+    if ($complaint['status'] === 'progress') {
+        $in_progress++;
+    } elseif ($complaint['status'] === 'resolved') {
+        $resolved++;
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -34,7 +52,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="manage_user.php">
                         <span class="material-icons-outlined">people</span>
                         <span>Users</span>
                     </a>
@@ -53,11 +71,16 @@
                     <span class="material-icons-outlined menu-btn" id="open-sidebar">menu</span>
                     <div>
                         <h1>Dashboard Overview</h1>
-                        <p class="welcome-text">Welcome back, John. Here's what's happening at the university.</p>
+                        <p class="welcome-text">Welcome back, Admin. Here's what's happening at the university.</p>
                     </div>
                 </div>
                 <div class="header-right">
-                    <span class="date-display">Today, December 13, 2024</span>
+                    <span class="date-display">
+                        <?php
+                            date_default_timezone_set("Asia/Jakarta");
+                            echo "Today, " . date("F d, Y");
+                            ?>
+                    </span>
                 </div>
             </header>
 
@@ -65,10 +88,10 @@
                 <div class="card stat-card">
                     <div class="card-info">
                         <h3>Total Complaints</h3>
-                        <h2 class="stat-number">1,247</h2>
-                        <p class="stat-trend up">
+                        <h2 class="stat-number"><?= $total_complaints ?></h2>
+                        <!-- <p class="stat-trend up">
                             <span class="material-icons-round">arrow_upward</span> 12% from last month
-                        </p>
+                        </p> -->
                     </div>
                     <div class="card-icon icon-blue">
                         <span class="material-icons-outlined">assignment</span>
@@ -77,10 +100,10 @@
                 <div class="card stat-card">
                     <div class="card-info">
                         <h3>In Progress</h3>
-                        <h2 class="stat-number">89</h2>
-                        <p class="stat-trend down">
+                        <h2 class="stat-number"><?= $in_progress ?></h2>
+                        <!-- <p class="stat-trend down">
                             <span class="material-icons-round">schedule</span> Avg. 2.3 days to resolve
-                        </p>
+                        </p> -->
                     </div>
                     <div class="card-icon icon-orange">
                         <span class="material-icons-outlined">hourglass_empty</span>
@@ -89,10 +112,10 @@
                 <div class="card stat-card">
                     <div class="card-info">
                         <h3>Resolved</h3>
-                        <h2 class="stat-number">1,158</h2>
-                        <p class="stat-trend up">
+                        <h2 class="stat-number"><?= $resolved ?></h2>
+                        <!-- <p class="stat-trend up">
                             <span class="material-icons-round">check_circle</span> 89.9% resolution rate
-                        </p>
+                        </p> -->
                     </div>
                     <div class="card-icon icon-green">
                         <span class="material-icons-outlined">done_all</span>
@@ -102,7 +125,7 @@
             <section class="recent-complaints card">
                 <div class="card-header">
                     <h2>Recent Complaints</h2>
-                    <a href="#" class="view-all-btn">View All</a>
+                    <!-- <a href="#" class="view-all-btn">View All</a> -->
                 </div>
                 <div class="table-responsive">
                     <table class="complaints-table">
@@ -111,21 +134,30 @@
                                 <th>ID</th>
                                 <th>Student</th>
                                 <th>Category</th>
-                                <th>Department</th>
+                                <th>Title</th>
                                 <th>Status</th>
                                 <th>Date</th>
                             </tr>
                         </thead>
                         <tbody>
+                            <?php foreach($complaints as $complaint) : ?>
                             <tr>
-                                <td>#1247</td>
-                                <td>Sarah Johnson</td>
-                                <td>Academic</td>
-                                <td>Computer Science</td>
-                                <td><span class="status badge-progress">In Progress</span></td>
-                                <td>Dec 12, 2024</td>
+                                <td>#<?= $complaint["complaint_id"] ?></td>
+                                <td>
+                                    <!-- // dapatkan nama user dari user_id -->
+                                    <?php
+                                    $user_id = $complaint['user_id'];
+                                    $user = query("SELECT name FROM users WHERE user_id = $user_id")[0];
+                                    echo $user['name'];
+                                    ?>
+                                </td>
+                                <td><?= $complaint["category"] ?></td>
+                                <td><?= $complaint["complaint_title"] ?></td>
+                                <td><span class="status badge-<?= $complaint["status"] ?>"><?= $complaint["status"] ?></span></td>
+                                <td><?= $complaint["create_at"] ?></td>
                             </tr>
-                            <tr>
+                            <?php endforeach; ?>
+                            <!-- <tr>
                                 <td>#1246</td>
                                 <td>Michael Chen</td>
                                 <td>Facilities</td>
@@ -148,7 +180,7 @@
                                 <td>Mathematics</td>
                                 <td><span class="status badge-resolved">Resolved</span></td>
                                 <td>Dec 9, 2024</td>
-                            </tr>
+                            </tr> -->
                         </tbody>
                     </table>
                 </div>

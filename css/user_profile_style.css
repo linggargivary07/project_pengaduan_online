@@ -1,0 +1,456 @@
+/* GLOBAL STYLES & RESET */
+:root {
+  --primary-color: #007bff;
+  --success-color: #28a745;
+  --warning-color: #ffc107;
+  --info-color: #17a2b8;
+  --text-color: #343a40;
+  --secondary-text: #6c757d;
+  --light-bg: #f8f9fa;
+  --border-color: #e9ecef;
+  --card-bg: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  color: var(--text-color);
+  line-height: 1.5;
+  background-color: var(--light-bg);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+a {
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+/* --- NAVBAR STYLING (Consistency) --- */
+.navbar {
+  background-color: #fff;
+  border-bottom: 1px solid var(--border-color);
+  padding: 15px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.5em;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.nav-links {
+  display: flex;
+  gap: 25px;
+}
+
+.nav-links a {
+  font-size: 1em;
+  padding: 5px 0;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--primary-color);
+  border-bottom: 2px solid var(--primary-color);
+}
+
+.user-info a:nth-child(2) {
+  color: var(--primary-color);
+  border-bottom: 2px solid var(--primary-color);
+}
+
+.user-info {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.profile-icon {
+  width: 30px;
+  height: 30px;
+  background-color: var(--secondary-color);
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 5px;
+}
+
+.menu-toggle {
+  display: none; /* Sembunyikan di desktop */
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+/* --- MAIN CONTENT --- */
+.main-content {
+  padding-top: 40px;
+  padding-bottom: 60px;
+}
+
+h2 {
+  font-size: 1.4em;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.card {
+  background-color: var(--card-bg);
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  margin-bottom: 30px;
+}
+
+/* --- SECTION 1: Personal Information --- */
+.personal-info-card {
+  display: flex;
+  flex-wrap: wrap; /* Untuk responsif */
+  justify-content: space-between;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.edit-btn {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9em;
+}
+
+.edit-btn i {
+  margin-right: 5px;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px 50px;
+  flex-grow: 1;
+  margin-right: 50px;
+}
+
+.info-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-size: 0.85em;
+  color: var(--secondary-text);
+  margin-bottom: 3px;
+}
+
+.value {
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+.profile-picture-container {
+  flex-shrink: 0;
+  align-self: flex-start;
+  margin-top: 10px; /* Sejajarkan dengan baris info pertama */
+}
+
+.profile-picture {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--border-color);
+}
+
+/* --- SECTION 2: Account Details --- */
+.account-details-section h2 {
+  margin-bottom: 15px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.stats-card {
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.icon-booking,
+.icon-rating,
+.icon-membership {
+  font-size: 2em;
+  margin-bottom: 10px;
+  color: var(--card-bg); /* Warna ikon yang akan diubah di bawah */
+  padding: 10px;
+  border-radius: 6px;
+}
+
+/* Card Coloring based on the image */
+.total-bookings-card {
+  background-color: #e3f2fd; /* Light Blue */
+}
+.icon-booking {
+  background-color: var(--primary-color);
+}
+
+.average-rating-card {
+  background-color: #e8f5e9; /* Light Green */
+}
+.icon-rating {
+  background-color: var(--success-color);
+}
+
+.membership-card {
+  background-color: #f3e5f5; /* Light Purple/Magenta */
+}
+.icon-membership {
+  background-color: #9c27b0;
+}
+
+.stat-value {
+  font-size: 1.8em;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.stat-label {
+  font-size: 0.9em;
+  color: var(--secondary-text);
+}
+
+/* --- SECTION 3: Membership Benefits --- */
+.membership-benefits-section {
+  padding: 30px;
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  margin-bottom: 30px;
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px 30px;
+}
+
+.benefit-item {
+  font-size: 0.95em;
+  color: var(--text-color);
+}
+
+.check-icon {
+  color: var(--success-color);
+  margin-right: 8px;
+}
+
+/* --- SECTION 4: Account Settings --- */
+.account-settings-section {
+  padding: 30px;
+}
+
+.setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.setting-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.setting-text {
+  flex-grow: 1;
+  margin-right: 20px;
+}
+
+.setting-title {
+  font-weight: 600;
+  margin-bottom: 3px;
+}
+
+.setting-desc {
+  font-size: 0.85em;
+  color: var(--secondary-text);
+}
+
+.setup-btn {
+  background-color: var(--card-bg);
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  padding: 8px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+/* Switch Styling (Toggle Button) */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 45px;
+  height: 25px;
+  flex-shrink: 0;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--border-color);
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: var(--primary-color);
+}
+
+input:checked + .slider:before {
+  transform: translateX(20px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 25px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/* ======================================= */
+/* MEDIA QUERIES UNTUK RESPONSIF */
+/* ======================================= */
+
+/* Tampilan Tablet (max-width: 992px) */
+@media (max-width: 992px) {
+  .info-grid {
+    grid-template-columns: 1fr; /* Tumpuk semua info ke 1 kolom */
+    margin-right: 20px;
+  }
+
+  .profile-picture-container {
+    /* Pindahkan gambar profil ke tengah di atas di tata letak yang lebih kecil */
+    width: 100%;
+    text-align: center;
+    order: -1; /* Pindahkan ke atas */
+    margin-bottom: 20px;
+  }
+
+  .personal-info-card {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .section-header {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 kolom di tablet */
+  }
+
+  .benefits-grid {
+    grid-template-columns: 1fr; /* 1 kolom di tablet */
+  }
+}
+
+/* Tampilan Mobile (max-width: 600px) */
+@media (max-width: 600px) {
+  .container {
+    padding: 0 15px;
+  }
+
+  .nav-links,
+  .user-info {
+    display: none; /* Sembunyikan navbar di mobile */
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr; /* 1 kolom di mobile */
+  }
+
+  .card {
+    padding: 20px;
+  }
+
+  .setting-item {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 0;
+    padding-right: 0;
+    gap: 10px;
+  }
+
+  .setting-text {
+    margin-right: 0;
+  }
+
+  .switch,
+  .setup-btn {
+    margin-top: 5px;
+    align-self: flex-end; /* Posisikan toggle/tombol setup di kanan */
+  }
+}

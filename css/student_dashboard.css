@@ -139,6 +139,8 @@
 .student-table {
   border-collapse: separate;
   border-spacing: 0 12px;
+  width: 100%;
+  table-layout: fixed;
 }
 
 .student-table tbody tr {
@@ -163,6 +165,35 @@
 .student-table th {
   font-size: 0.75rem;
   letter-spacing: 0.08em;
+  padding: 12px 16px;
+  text-align: left;
+  background-color: var(--color-bg-main);
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
+
+.student-table th:nth-child(1) {
+  width: 10%;
+} /* ID */
+.student-table th:nth-child(2) {
+  width: 25%;
+} /* Title */
+.student-table th:nth-child(3) {
+  width: 15%;
+} /* Category */
+.student-table th:nth-child(4) {
+  width: 15%;
+} /* Date Submitted */
+.student-table th:nth-child(5) {
+  width: 15%;
+} /* Status */
+.student-table th:nth-child(6) {
+  width: 20%;
+} /* Action */
+
+.student-table td {
+  padding: 16px;
+  vertical-align: middle;
 }
 
 .complaint-id {
@@ -263,6 +294,9 @@
   .btn-new-complaint {
     width: 100%;
     justify-content: center;
+  }
+  .student-table th {
+    width: auto;
   }
 }
 
