@@ -81,7 +81,7 @@ $complaints = query("SELECT * FROM complaints");
             </header>
 
             <section class="card student-card">
-                <div class="card-header-flex">
+                <!-- <div class="card-header-flex">
                     <h2>Recent Complaints</h2>
                     <div class="filter-dropdown">
                         <select class="form-control-sm">
@@ -91,7 +91,7 @@ $complaints = query("SELECT * FROM complaints");
                             <option>Resolved</option>
                         </select>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="table-responsive">
                     <table class="complaints-table student-table">

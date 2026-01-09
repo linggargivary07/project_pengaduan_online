@@ -98,7 +98,7 @@ $responses = query("
                     <div class="attachments-grid">
                         <h3>Attachments</h3>
                         <div class="attachment-item-v2">
-                            <img src="img/attachment/<?= $complaint["attachment_url"] ?>" alt="" max-width="350px">
+                            <img src="img/attachment/<?= $complaint["attachment_url"] ?>" alt="" width="100%">
                         </div>
                     </div>
                 </section>

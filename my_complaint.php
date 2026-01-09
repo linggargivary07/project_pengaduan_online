@@ -83,14 +83,14 @@ $complaints = query("SELECT * FROM complaints where user_id=$user_id");
             <section class="card student-card">
                 <div class="card-header-flex">
                     <h2>Recent Complaints</h2>
-                    <div class="filter-dropdown">
+                    <!-- <div class="filter-dropdown">
                         <select class="form-control-sm">
                             <option>All Status</option>
                             <option>Pending</option>
                             <option>In Progress</option>
                             <option>Resolved</option>
                         </select>
-                    </div>
+                    </div> -->
                 </div>
 
                 <div class="table-responsive">

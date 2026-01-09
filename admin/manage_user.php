@@ -1,7 +1,22 @@
 <?php 
 require 'functions.php';
-// Asumsi tabel bernama 'users'
-$users = query("SELECT * FROM users ORDER BY name ASC");
+
+$keyword = $_GET['keyword'] ?? '';
+
+$query = "SELECT * FROM users 
+          WHERE role != 'admin'";
+
+if ($keyword !== '') {
+    $query .= " AND (
+        name LIKE '%$keyword%' 
+        OR email LIKE '%$keyword%'
+    )";
+}
+
+$query .= " ORDER BY name ASC";
+
+$users = query($query);
+
 ?>
 
 <!DOCTYPE html>
@@ -59,7 +74,7 @@ $users = query("SELECT * FROM users ORDER BY name ASC");
 
             <section class="filter-section">
                 <div class="filter-group">
-                    <div class="filter-item">
+                    <!-- <div class="filter-item">
                         <label>Filter by Role</label>
                         <select>
                             <option>All Roles</option>
@@ -67,7 +82,7 @@ $users = query("SELECT * FROM users ORDER BY name ASC");
                             <option>Faculty</option>
                             <option>Administrator</option>
                         </select>
-                    </div>
+                    </div> -->
                     <!-- <div class="filter-item">
                         <label>Status</label>
                         <select>
@@ -79,10 +94,18 @@ $users = query("SELECT * FROM users ORDER BY name ASC");
                     </div> -->
                 </div>
                 <div class="search-group">
-                    <label>Search User</label>
-                    <div class="search-input">
-                        <input type="text" placeholder="Search by name or email...">
-                    </div>
+                    <form method="GET">
+                        <label>Search User</label>
+                        <div class="search-input">
+                            <input 
+                                type="text" 
+                                name="keyword"
+                                placeholder="Search by name or email..."
+                                value="<?= $_GET['keyword'] ?? '' ?>"
+                            >
+                        </div>
+                    </form>
+
                 </div>
             </section>
 
@@ -121,14 +144,14 @@ $users = query("SELECT * FROM users ORDER BY name ASC");
                     </table>
                 </div>
 
-                <div class="pagination-container">
+                <!-- <div class="pagination-container">
                     <p class="showing-text">Showing 1 to <?= count($users) ?> of results</p>
                     <div class="pagination">
                         <button class="page-btn">Previous</button>
                         <button class="page-btn active">1</button>
                         <button class="page-btn">Next</button>
                     </div>
-                </div>
+                </div> -->
             </section>
         </main>
     </div>

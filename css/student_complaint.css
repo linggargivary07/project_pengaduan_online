@@ -85,11 +85,6 @@
   border: 1px solid var(--color-border);
   max-width: 350px;
 }
-
-.attachment-item-v2 img {
-  width: 100%;
-}
-
 /* .file-icon {
   color: var(--color-primary);
   margin-right: 12px;
